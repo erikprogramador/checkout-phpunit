@@ -4,9 +4,9 @@ namespace App\Checkout;
 
 class FulfilledCheckout
 {
-    protected $code;
+    protected string $code;
 
-    protected $checkout;
+    protected Checkout $checkout;
 
     public function __construct(Checkout $checkout)
     {
@@ -14,22 +14,22 @@ class FulfilledCheckout
         $this->code = $this->generateCode();
     }
 
-    public function getItems()
+    public function getItems(): array
     {
         return $this->checkout->getItems();
     }
 
-    public function getTotal()
+    public function getTotal(): float
     {
         return $this->checkout->getTotal();
     }
 
-    public function getCode()
+    public function getCode(): string
     {
         return $this->code;
     }
 
-    protected function generateCode()
+    protected function generateCode(): string
     {
         return md5(date('ymd'));
     }

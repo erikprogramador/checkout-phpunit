@@ -10,32 +10,32 @@ class Product implements CheckoutItem
 
     protected $ammount;
 
-    public function __construct($name, $ammount)
+    public function __construct(string $name, float $ammount)
     {
         $this->name = $name;
         $this->ammount = $ammount;
     }
 
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setAmmount($ammount)
+    public function setAmmount(float $ammount): self
     {
         $this->ammount = $ammount;
 
         return $this;
     }
 
-    public function getAmmount()
+    public function getAmmount(): float
     {
         return $this->ammount;
     }

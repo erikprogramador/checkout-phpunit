@@ -4,33 +4,33 @@ namespace App\Checkout;
 
 class Checkout
 {
-    protected $items = [];
+    protected array $items = [];
 
-    protected $taxRate;
+    protected float $taxRate = 0;
 
-    public function fulfill()
+    public function fulfill(): FulfilledCheckout
     {
         return new FulfilledCheckout($this);
     }
 
-    public function addItem(CheckoutItem $item)
+    public function addItem(CheckoutItem $item): self
     {
         $this->items[] = $item;
         return $this;
     }
 
-    public function withTax($taxRate)
+    public function withTax(float $taxRate): self
     {
         $this->taxRate = $taxRate / 100;
         return $this;
     }
 
-    public function getItems()
+    public function getItems(): array
     {
         return $this->items;
     }
 
-    public function getTotal()
+    public function getTotal(): float
     {
         $total = 0;
         foreach ($this->items as $item) {

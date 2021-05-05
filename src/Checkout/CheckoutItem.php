@@ -4,13 +4,13 @@ namespace App\Checkout;
 
 interface CheckoutItem
 {
-    public function __construct($name, $ammount);
+    public function __construct(string $name, float $ammount);
 
-    public function setName($name);
+    public function setName(string $name): self;
 
-    public function getName();
+    public function getName(): string;
 
-    public function setAmmount($ammount);
+    public function setAmmount(float $ammount): self;
 
-    public function getAmmount();
+    public function getAmmount(): float;
 }
