@@ -8,7 +8,7 @@ class Checkout
 
     protected $taxRate;
 
-    public function add(Item $item)
+    public function addItem(Item $item)
     {
         $this->items[] = $item;
         return $this;

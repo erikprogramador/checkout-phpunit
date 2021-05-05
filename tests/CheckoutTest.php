@@ -14,8 +14,8 @@ class CheckoutTest extends TestCase
         $item1 = new Item('Product 1', 22.5);
         $item2 = new Item('Product 2', 34.5);
         $checkout = new Checkout();
-        $checkout->add($item1);
-        $checkout->add($item2);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
 
         $this->assertCount(2, $checkout->getItems());
     }
@@ -26,8 +26,8 @@ class CheckoutTest extends TestCase
         $item1 = new Item('Product 1', 22.5);
         $item2 = new Item('Product 2', 34.5);
         $checkout = new Checkout();
-        $checkout->add($item1);
-        $checkout->add($item2);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
 
         $this->assertEquals(57, $checkout->getTotal());
     }
@@ -39,8 +39,8 @@ class CheckoutTest extends TestCase
         $item2 = new Item('Product 2', 34.5);
         $checkout = new Checkout();
         $checkout->withTax(30);
-        $checkout->add($item1);
-        $checkout->add($item2);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
 
         $this->assertEquals(74.10, $checkout->getTotal());
     }
