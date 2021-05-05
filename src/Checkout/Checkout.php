@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Checkout;
 
 class Checkout
 {
@@ -13,7 +13,7 @@ class Checkout
         return new FulfilledCheckout($this);
     }
 
-    public function addItem(Item $item)
+    public function addItem(CheckoutItem $item)
     {
         $this->items[] = $item;
         return $this;

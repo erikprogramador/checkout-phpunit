@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Checkout;
 
-interface Item
+interface CheckoutItem
 {
     public function __construct($name, $ammount);
 

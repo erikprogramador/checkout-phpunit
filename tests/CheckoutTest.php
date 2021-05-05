@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use App\Product;
-use App\Checkout;
-use App\FulfilledCheckout;
+use App\Products\Product;
+use App\Checkout\Checkout;
 use PHPUnit\Framework\TestCase;
+use App\Checkout\FulfilledCheckout;
 
 class CheckoutTest extends TestCase
 {

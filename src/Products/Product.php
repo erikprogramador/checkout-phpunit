@@ -1,8 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Products;
 
-class Product implements Item
+use App\Checkout\CheckoutItem;
+
+class Product implements CheckoutItem
 {
     protected $name;
 
