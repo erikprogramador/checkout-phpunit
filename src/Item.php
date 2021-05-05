@@ -2,39 +2,15 @@
 
 namespace App;
 
-class Item
+interface Item
 {
-    protected $name;
+    public function __construct($name, $ammount);
 
-    protected $ammount;
+    public function setName($name);
 
-    public function __construct($name, $ammount)
-    {
-        $this->name = $name;
-        $this->ammount = $ammount;
-    }
+    public function getName();
 
-    public function setName($name)
-    {
-        $this->name = $name;
+    public function setAmmount($ammount);
 
-        return $this;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setAmmount($ammount)
-    {
-        $this->ammount = $ammount;
-
-        return $this;
-    }
-
-    public function getAmmount()
-    {
-        return $this->ammount;
-    }
+    public function getAmmount();
 }
