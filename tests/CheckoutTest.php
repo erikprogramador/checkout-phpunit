@@ -4,12 +4,13 @@ namespace Tests;
 
 use App\Product;
 use App\Checkout;
+use App\FulfilledCheckout;
 use PHPUnit\Framework\TestCase;
 
 class CheckoutTest extends TestCase
 {
     /** @test */
-    public function it_can_add_itens_to_cart()
+    public function it_can_add_items_to_cart()
     {
         $item1 = new Product('Product 1', 22.5);
         $item2 = new Product('Product 2', 34.5);
@@ -43,5 +44,62 @@ class CheckoutTest extends TestCase
         $checkout->addItem($item2);
 
         $this->assertEquals(74.10, $checkout->getTotal());
+    }
+
+    /** @test */
+    public function it_can_be_fulfilled()
+    {
+        $item1 = new Product('Product 1', 22.5);
+        $item2 = new Product('Product 2', 34.5);
+        $checkout = new Checkout();
+        $checkout->withTax(30);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
+
+        $fulfilledCheckout = $checkout->fulfill();
+        $this->assertInstanceOf(FulfilledCheckout::class, $fulfilledCheckout);
+    }
+
+    /** @test */
+    public function it_returned_fufilled_may_contains_the_items()
+    {
+        $item1 = new Product('Product 1', 22.5);
+        $item2 = new Product('Product 2', 34.5);
+        $checkout = new Checkout();
+        $checkout->withTax(30);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
+
+        $fulfilledCheckout = $checkout->fulfill();
+        $this->assertEquals($item1->getName(), $fulfilledCheckout->getItems()[0]->getName());
+        $this->assertEquals($item2->getName(), $fulfilledCheckout->getItems()[1]->getName());
+    }
+
+    /** @test */
+    public function it_returned_fufilled_may_contains_the_total()
+    {
+        $item1 = new Product('Product 1', 22.5);
+        $item2 = new Product('Product 2', 34.5);
+        $checkout = new Checkout();
+        $checkout->withTax(30);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
+
+        $fulfilledCheckout = $checkout->fulfill();
+        $this->assertEquals(74.10, $fulfilledCheckout->getTotal());
+    }
+
+    /** @test */
+    public function it_returned_fufilled_may_contains_a_unique_code()
+    {
+        $item1 = new Product('Product 1', 22.5);
+        $item2 = new Product('Product 2', 34.5);
+        $checkout = new Checkout();
+        $checkout->withTax(30);
+        $checkout->addItem($item1);
+        $checkout->addItem($item2);
+
+        $fulfilledCheckout = $checkout->fulfill();
+        $this->assertNotNull($fulfilledCheckout->getCode());
     }
 }

@@ -8,6 +8,11 @@ class Checkout
 
     protected $taxRate;
 
+    public function fulfill()
+    {
+        return new FulfilledCheckout($this);
+    }
+
     public function addItem(Item $item)
     {
         $this->items[] = $item;
